@@ -37,8 +37,6 @@ hour_angle = 0
 Meridian = None
 column = 0
 
-
-
 class Hands:
     def __init__(self, angle, r, colour):
         self.angle = angle
@@ -52,7 +50,6 @@ class Hands:
 
     def draw(self):
         self.hand = pygame.draw.line(screen, self.colour, screen_rect.center, (self.x, self.y), self.width)
-
 
 
 while True:
@@ -80,14 +77,7 @@ while True:
                     "date": current_time.strftime("%d"),
                     "year": current_time.strftime("%Y")}
 
-    """ elems = [{face_digital["weekday"]:[0, 0]},
-              {face_digital["month"]:[0, 0]},
-              {face_digital["date"]:[1, -30]},
-               {face_digital["year"]:[1, ]}]
-    for elem in elems:
-         column += 50
-         print(elem) """
-
+    # This one's a one-liner
     dateObj = screen.blit(datefont[1].render(face_digital["date"], 1, COLOURS["white"]), [screen_rect.w*(4/5), screen_rect.h//2-datefont[1].size(face_digital["date"])[0]//3])    # Displays the date on the screen (don't question why its so big, I wanted  to fit everything in a line)
     weekdayObj = screen.blit(datefont[0].render(face_digital["weekday"], 1, COLOURS["white"]), [screen_rect.w*(1/5), screen_rect.h//2-datefont[0].size(face_digital["weekday"])[0]])    # Displays the weekday on the screen.
     monthObj = screen.blit(datefont[0].render(face_digital["month"], 1, COLOURS["white"]), [screen_rect.w*(1/5), screen_rect.h//(1.9)])    # Displays the month on the screen.
@@ -119,9 +109,8 @@ while True:
     screen.blit(digi_time12, [0, 25])
     pygame.draw.line(screen, COLOURS["white"], (0, 22), (100, 22))
 
-    # pygame.draw.line(screen, COLOURS["d_green"], (0, screen_rect.h//2), (WIDTH, screen_rect.h//2))
+    # I hated to use too many lines so I just wrote 3 lines in one :)
     screen.blit(pygame.font.SysFont("Arial", 10).render("Made by Ishaan Garud!", 1, COLOURS["white"]), [WIDTH - pygame.font.SysFont("Arial", 10).size("Made by Ishaan Garud!")[0], 0])
-
 
     window.ifQuit()
     pygame.display.update()
