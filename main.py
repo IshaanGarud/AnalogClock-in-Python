@@ -37,6 +37,11 @@ hour_angle = 0
 Meridian = None
 column = 0
 
+heading = random.choice(("Made By Ishaan Garud", "Sigma!",
+                         "Deez Nuts!", "Ever Heard of Joe?",
+                         "Wanna know what ma balls taste like?",
+                         "I don't need bitches, I need python!"))
+
 class Hands:
     def __init__(self, angle, r, colour):
         self.angle = angle
