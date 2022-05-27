@@ -1,11 +1,5 @@
-'''AnalogClock-in-Python/main.py
-@IshaanGarud
-IshaanGarud Main.py
-1 contributor
-d117 lines (92 sloc)  5.09 KB'''
+#By IshaanGarud 
 
-import PyGameEngine as engine
-# make sure to install PyGameEngine.py (for more info check) in the same folder and same name
 import pygame, sys, math, datetime, random
 
 pygame.init()
