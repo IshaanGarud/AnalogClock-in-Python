@@ -1,21 +1,22 @@
+'''AnalogClock-in-Python/main.py
+@IshaanGarud
+IshaanGarud Main.py
+1 contributor
+d117 lines (92 sloc)  5.09 KB'''
+
 import PyGameEngine as engine
 # make sure to install PyGameEngine.py (for more info check) in the same folder and same name
-import pygame, sys, math, datetime
+import pygame, sys, math, datetime, random
 
 pygame.init()
 
 WIDTH, HEIGHT, FPS = 690, 800, 60
 AVG = min(WIDTH, HEIGHT)
 
-window = engine.Window(WIDTH, HEIGHT, FPS)
-window.set_window()
-screen = window.win_return()[0]
-screen_rect = window.win_return()[1]
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen_rect = screen.get_rect()
 
-clock = window.set_clock()
-
-bg = engine.Background(WIDTH, HEIGHT, FPS)
-bg.screen = screen
+clock = pygame.time.Clock()
 
 COLOURS = {"white": (250, 250, 250),
            "black": (0, 0, 0),
@@ -28,14 +29,20 @@ COLOURS = {"white": (250, 250, 250),
            "blue": (100, 100, 255)}
 
 myfont = pygame.font.SysFont("Arial", 20)
-facefont = pygame.font.SysFont("Times New Roman", 30, 1)
-datefont = [pygame.font.SysFont("msgothic", 20, 1, 1), pygame.font.SysFont("msgothic", 30, 1, 1)]
+facefont = pygame.font.SysFont("Times New Roman", 35, 1)
+datefont = [pygame.font.SysFont("msgothic", 30, 1, 1), pygame.font.SysFont("msgothic", 30, 1, 1)]
 
 sec_angle = 0
 min_angle = 0
 hour_angle = 0
 Meridian = None
 column = 0
+
+heading = random.choice(("Made By Ishaan Garud", "Sigma!",
+                         "Deez Nuts!", "Ever Heard of Joe?",
+                         "Wanna know what ma balls taste like?",
+                         "I don't need bitches, I need python!"))
+    
 
 class Hands:
     def __init__(self, angle, r, colour):
@@ -53,7 +60,7 @@ class Hands:
 
 
 while True:
-    bg.solid_color(50, 50, 100)
+    screen.fill(COLOURS["bg"])
     frame = pygame.draw.circle(screen, COLOURS["white"], screen_rect.center, round((AVG*350)/690), 3)
 
     for i in range(1, 13):                  # Controls the Numbers on Clock face
@@ -110,8 +117,13 @@ while True:
     pygame.draw.line(screen, COLOURS["white"], (0, 22), (100, 22))
 
     # I hated to use too many lines so I just wrote 3 lines in one :)
-    screen.blit(pygame.font.SysFont("Arial", 10).render("Made by Ishaan Garud!", 1, COLOURS["white"]), [WIDTH - pygame.font.SysFont("Arial", 10).size("Made by Ishaan Garud!")[0], 0])
+    screen.blit(pygame.font.SysFont("Arial", 15).render(heading, 1, COLOURS["white"]), [WIDTH - pygame.font.SysFont("Arial", 15).size(heading)[0], 0])
 
-    window.ifQuit()
+    keys = pygame.key.get_pressed()
+    for ev in pygame.event.get():
+        if ev.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
+            pygame.quit()
+            sys.exit()
+            
     pygame.display.update()
     clock.tick(FPS)
