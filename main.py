@@ -115,7 +115,7 @@ while True:
     pygame.draw.line(screen, COLOURS["white"], (0, 22), (100, 22))
 
     # I hated to use too many lines so I just wrote 3 lines in one :)
-    screen.blit(pygame.font.SysFont("Arial", 10).render("Made by Ishaan Garud!", 1, COLOURS["white"]), [WIDTH - pygame.font.SysFont("Arial", 10).size("Made by Ishaan Garud!")[0], 0])
+    screen.blit(pygame.font.SysFont("Arial", 15).render(heading, 1, COLOURS["white"]), [WIDTH - pygame.font.SysFont("Arial", 15).size(heading)[0], 0])
 
     window.ifQuit()
     pygame.display.update()
